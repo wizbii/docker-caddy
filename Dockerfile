@@ -9,7 +9,8 @@ WORKDIR /usr/src/app
 
 COPY main.go .
 
-RUN go mod init caddy && go install
+RUN go mod init caddy && CGO_ENABLED=0 GOOS=linux go install -a -ldflags '-extldflags "-static"'
+
 
 FROM alpine
 
