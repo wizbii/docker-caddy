@@ -7,9 +7,9 @@ ENV GO111MODULE on
 
 WORKDIR /usr/src/app
 
-COPY main.go .
+COPY main.go go.mod go.sum ./
 
-RUN go mod init caddy && CGO_ENABLED=0 GOOS=linux go install -a -ldflags '-extldflags "-static"'
+RUN CGO_ENABLED=0 GOOS=linux go install -a -ldflags '-extldflags "-static"'
 
 
 FROM alpine
